@@ -1,21 +1,23 @@
-# Codebase STOLEN FROM THE ide-yaml PROJECT!!!  Security! (but don't blame them)
+## Overview
 
-Uses https://github.com/mtsmfm/language_server-ruby as the back end
+Virtually all the functionality of this package comes from [ruby_language_server](https://github.com/kwerle/ruby_language_server).
 
-See https://github.com/mtsmfm/vscode-ruby-lsc/blob/master/src/extension.ts for notes on how the docker image is used from vscode.
+The first time this fires up (and any time you clear your docker images), the docker image will need to be downloaded - and that may take a few minutes.
 
-Really poor Atom-IDE support for ruby.
+Install it, check out a ruby file, and do Outline View: Toggle (alt-o for me).
+Also View -> Toggle Diagnostics (alt-shift-d)
 
 ## Requirements
 
   - You must have [docker](https://www.docker.com/) installed
   - You must have really low expectations or be willing to help add features
-  - **You must wait for the outline view to say there is no outline available before typing any code or the parser will crash** due to a launch timing issue (pull request pending)
 
 ## Features
 
-  - Really bad completion suggestions.
-  - Syntax checking
+  - Completion suggestions
+  - Outline view
+  - Jump to definition
+  - Linting using rubocop
 
 ## FAQ
 
@@ -25,9 +27,7 @@ I'm just trying to get the ball rolling.
 
 > Why does this crash?
 
-Do you have docker installed?  Is the path /usr/local/bin/docker?  You can tweak that in the settings...
-
-Did you start typing something before the outline view said there is none available?  Because that will crash the parser which will lock up the editor.
+Do you have docker installed?  Is the path /usr/local/bin/docker?  You can tweak that in the settings.
 
 ## License
 

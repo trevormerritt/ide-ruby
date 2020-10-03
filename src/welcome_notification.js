@@ -1,4 +1,5 @@
 // show welcome message on first installation
+const atomPackageDeps = require('atom-package-deps')
 const path = require('path')
 const fs = require('fs')
 const packageJSON = require('../package.json')
@@ -12,9 +13,10 @@ const generateWelcomeMsg = () => {
   const grammarName = enhancedScopes[0].split('.')[1].toUpperCase()
   return `## Welcome to ${pkgName}\n\nQuick start:\n${[
     `Open ${grammarName} file from your Project`,
-    'Dispatch command `Outline View: Toggle`',
+    'Outline View: Toggle (alt-o normally)',
+    'Diagnostics: Toggle Table (alt-shift-d)',
   ].map((str, i) => `${i}. ${str}\n`).join('')
-  }\nHappy Using Atom IDE : )`
+  }\nHappy Atom IDE'ing : )`
 }
 
 const generateWarnMsg = () => {
@@ -53,6 +55,7 @@ const checkRequirementsThenWelcome = () => {
   try {
     fs.accessSync(REQUIREMENTS_CHECK_PASSED)
   } catch (err) {
+    atomPackageDeps.install('ide-ruby', /* promptUser */ true)
     if (requirements.every(req => atom.packages.isPackageLoaded(req))) {
       atom.notifications.addSuccess(
         generateWelcomeMsg(),
